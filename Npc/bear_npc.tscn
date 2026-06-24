@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bp17drsxi18fa"]
+
+[ext_resource type="Script" uid="uid://dga2bpxe4sgse" path="res://Scripts/Encounter/bear_hut_encounter/npc_bear.gd" id="1_43e66"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_43e66"]
+radius = 1.0
+height = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43e66"]
+albedo_color = Color(0.99999994, 0.16237089, 0.20906317, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_43e66"]
+radius = 1.0
+height = 2.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mxnfi"]
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_43e66"]
+
+[node name="Bear" type="Node3D" unique_id=8231705]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1225990084 groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2273699, 0, 0)
+script = ExtResource("1_43e66")
+
+[node name="Body" type="MeshInstance3D" parent="RigidBody3D" unique_id=1381125004]
+transform = Transform3D(0.004171336, -0.9999913, 0, 0.9999913, 0.004171336, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_43e66")
+surface_material_override/0 = SubResource("StandardMaterial3D_43e66")
+
+[node name="Hitbox" type="CollisionShape3D" parent="RigidBody3D" unique_id=155606249]
+transform = Transform3D(0.008028377, -0.99996775, 0, 0.99996775, 0.008028377, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_43e66")
+
+[node name="Head" type="RigidBody3D" parent="RigidBody3D" unique_id=543790669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1846182, 0.59379345, 0)
+
+[node name="Head" type="MeshInstance3D" parent="RigidBody3D/Head" unique_id=736105757]
+transform = Transform3D(-0.03474256, -0.9993963, 0, 0.9993963, -0.03474256, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_mxnfi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Head" unique_id=1759009453]
+shape = SubResource("SphereShape3D_43e66")

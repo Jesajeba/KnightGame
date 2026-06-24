@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://Scenes/Player.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://dyjxdgnshd1jw" path="res://Scenes/Chunk/Encounter/bear_hut_encounter.tscn" id="2_idj7w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_idj7w"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_kln2b"]
+sky_material = SubResource("ProceduralSkyMaterial_idj7w")
+
+[sub_resource type="Environment" id="Environment_rgh2o"]
+background_mode = 2
+sky = SubResource("Sky_kln2b")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r150o"]
+albedo_color = Color(0.40923974, 0.6217516, 0.28822815, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idj7w"]
+albedo_color = Color(0.70159554, 0.66802603, 0.47903442, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1169573876]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1442553042]
+environment = SubResource("Environment_rgh2o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1727032984]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1095354474]
+transform = Transform3D(1, 0, 0, 0, -0.0004502655, 0, 0, 0, 1, 0.078186035, -1.9073486e-06, 0.008220673)
+use_collision = true
+size = Vector3(40, 1, 40)
+material = SubResource("StandardMaterial3D_r150o")
+
+[node name="Road" type="CSGBox3D" parent="." unique_id=1471414622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+use_collision = true
+size = Vector3(5, 0.1, 40)
+material = SubResource("StandardMaterial3D_idj7w")
+
+[node name="Node3D" parent="." unique_id=751312710 instance=ExtResource("1_r150o")]
+
+[node name="BearHutEncounter" parent="." unique_id=237611048 instance=ExtResource("2_idj7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)

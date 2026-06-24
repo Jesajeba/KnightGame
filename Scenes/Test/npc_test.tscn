@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://pu2qu8fuusu8"]
+
+[ext_resource type="Script" uid="uid://ciwikm42xwj6a" path="res://Scenes/Test/Scripts/npc_ai_test.gd" id="1_ykg6r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.7308425, 0.1742518, 0.25003338, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ykg6r"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2ujms"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_oehec"]
+size = Vector3(0.09, 1.5, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4edfq"]
+albedo_color = Color(0.52906674, 0.5290667, 0.5290667, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ogh73"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnwr0"]
+albedo_color = Color(0.5372549, 0.4627451, 0.15294118, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ap3ng"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh8ls"]
+albedo_color = Color(0.5362778, 0.46402287, 0.15156695, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8ee0"]
+radius = 0.28271484
+height = 1.684082
+
+[node name="NpcTest" type="Node3D" unique_id=307338276]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=226797234 groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8050207, 0)
+script = ExtResource("1_ykg6r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D" unique_id=506205917 groups=["enemy"]]
+
+[node name="BodyHitbox" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1436585394]
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="Pivot" type="Node3D" parent="CharacterBody3D" unique_id=1138199555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.80583405, 0)
+
+[node name="BloodPos" type="Node3D" parent="CharacterBody3D/Pivot" unique_id=2001001223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15561843, 1.5735502, 0)
+
+[node name="Body" type="MeshInstance3D" parent="CharacterBody3D/Pivot" unique_id=911256148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80583405, 0)
+material_override = SubResource("StandardMaterial3D_yf5fn")
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="Head" type="Node3D" parent="CharacterBody3D/Pivot" unique_id=985157269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8008341, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Head" unique_id=208484395]
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="Hands" type="Node3D" parent="CharacterBody3D/Pivot" unique_id=2105242870]
+transform = Transform3D(0.9250233, 0, 0.3799106, 0, 1, 0, -0.3799106, 0, 0.9250233, 0, 1.6792504, 0)
+
+[node name="LeftHand" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Hands" unique_id=1125426266]
+transform = Transform3D(0.5852263, -0.8108338, 0.007642097, 3.390739e-10, -0.009424567, -0.99995553, 0.81086993, 0.58520025, -0.005515504, 0.012658596, -0.42728662, -0.47203183)
+mesh = SubResource("CylinderMesh_ykg6r")
+
+[node name="RightHand" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Hands" unique_id=1417247523]
+transform = Transform3D(0.99628013, 0.08617236, -0.00052640634, 3.0099215e-11, 0.0061086495, 0.9999814, 0.08617397, -0.9962615, 0.0060859257, 0.39160126, -0.20672369, -0.30005655)
+mesh = SubResource("CylinderMesh_2ujms")
+
+[node name="Sword" type="Node3D" parent="CharacterBody3D/Pivot/Hands" unique_id=1484265094]
+transform = Transform3D(0.25375146, 0.16203459, -0.95360124, -0.041667104, 0.986786, 0.15658548, 0.96637166, -5.122274e-09, 0.25714976, 0.40758777, -0.33838117, -0.7148025)
+
+[node name="Blade" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Hands/Sword" unique_id=1331357604]
+transform = Transform3D(1, 0, 0, 4.8191935e-18, 1, 0, 0, 0, 1, 0, 1.0704677, 0)
+mesh = SubResource("BoxMesh_oehec")
+surface_material_override/0 = SubResource("StandardMaterial3D_4edfq")
+
+[node name="Guard" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Hands/Sword" unique_id=1841906246]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.3028407, 0)
+mesh = SubResource("CylinderMesh_ogh73")
+surface_material_override/0 = SubResource("StandardMaterial3D_mnwr0")
+
+[node name="Handle" type="MeshInstance3D" parent="CharacterBody3D/Pivot/Hands/Sword" unique_id=830990367]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000007, 0, 0, 0, 1.0000005, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ap3ng")
+surface_material_override/0 = SubResource("StandardMaterial3D_qh8ls")
+
+[node name="Hitbox" type="Area3D" parent="CharacterBody3D/Pivot/Hands/Sword" unique_id=269858717]
+transform = Transform3D(1.0000001, -1.2247301e-09, 0, -3.9758485e-09, 1.0000001, 1.6817074e-08, 1.4901161e-08, 1.358397e-08, 1.0000001, 0, 0, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Pivot/Hands/Sword/Hitbox" unique_id=1962569311]
+transform = Transform3D(1.0000005, -0.00094248244, -1.4901161e-08, 0.00094247225, 1.0000002, -1.3943205e-08, 2.9802322e-08, -8.89122e-09, 1.0000005, 0.0001488924, 1.1061927, 0)
+shape = SubResource("CapsuleShape3D_u8ee0")
+debug_color = Color(0.93327594, 0, 0.51579684, 0.41960785)
+
+[connection signal="body_entered" from="CharacterBody3D/Pivot/Hands/Sword/Hitbox" to="CharacterBody3D" method="_on_hitbox_body_entered"]

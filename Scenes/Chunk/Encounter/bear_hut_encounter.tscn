@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dyjxdgnshd1jw"]
+
+[ext_resource type="PackedScene" uid="uid://bp17drsxi18fa" path="res://Npc/bear_npc.tscn" id="1_e7kbf"]
+[ext_resource type="PackedScene" uid="uid://clwhf3gq2boyk" path="res://Npc/hut_owner_npc.tscn" id="2_26oe0"]
+[ext_resource type="Script" uid="uid://b8lduguo80t22" path="res://Scripts/Encounter/bear_hut_encounter/trigger_encounter_start.gd" id="3_26oe0"]
+[ext_resource type="Script" uid="uid://dpnfgsbglgmda" path="res://Scripts/Encounter/bear_hut_encounter/trigger_encounter_end.gd" id="4_76bc1"]
+[ext_resource type="Script" uid="uid://78my70idbf4p" path="res://Scripts/Encounter/bear_hut_encounter/trigger_house_entered.gd" id="6_njnsb"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+vertices = PackedVector3Array(4.328186, 0.38804507, -1.5, 5.078186, 0.38804507, -0.25, 8.578186, 0.38804507, -0.25, 8.578186, 0.38804507, -6.75, 2.078186, 0.38804507, -0.75, 2.828186, 0.38804507, -1.5, 11.328186, 0.38804507, -19, -18.921814, 0.38804507, -19, -18.921814, 0.38804507, 0, 9.328186, 0.38804507, -7.5, 11.328186, 0.38804507, -7.5, 2.078186, 0.38804507, 0, 17.328186, 0.38804507, -6.75, 17.328186, 0.38804507, 4, 19.078186, 0.38804507, 4.25, 19.078186, 0.38804507, -19, 16.578186, 0.38804507, -7.5, 11.578186, 0.38804507, -4.5, 11.578186, 0.38804507, -4, 12.328186, 0.38804507, -4.25, 11.578186, 0.38804507, 1.75, 11.578186, 0.38804507, 3.5, 14.578186, 0.38804507, 3.5, 14.578186, 0.38804507, -0.25, 11.578186, 0.38804507, -0.5, 10.828186, 0.38804507, 0.75, 10.828186, 0.38804507, 1, 11.328186, 0.38804507, 19, 11.328186, 0.38804507, 6.5, 9.328186, 0.38804507, 6.5, 8.578186, 0.38804507, 5.75, 2.828186, 0.38804507, 1.5, 8.578186, 0.38804507, 1.75, 5.078186, 0.38804507, 0.75, 4.328186, 0.38804507, 1.5, 9.328186, 0.38804507, 1, 9.328186, 0.38804507, 0.75, 2.078186, 0.38804507, 0.75, -18.921814, 0.38804507, 19, 17.328186, 0.38804507, 5.75, 16.578186, 0.38804507, 6.5, 19.078186, 0.38804507, 19)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(5, 3, 0), PackedInt32Array(3, 5, 9), PackedInt32Array(9, 5, 6), PackedInt32Array(6, 10, 9), PackedInt32Array(4, 11, 8), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(10, 6, 16), PackedInt32Array(16, 6, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 21, 20), PackedInt32Array(26, 25, 20), PackedInt32Array(20, 25, 24), PackedInt32Array(20, 24, 23), PackedInt32Array(20, 23, 22), PackedInt32Array(29, 28, 27), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 27), PackedInt32Array(34, 33, 32), PackedInt32Array(36, 25, 35), PackedInt32Array(35, 25, 26), PackedInt32Array(34, 32, 31), PackedInt32Array(31, 32, 30), PackedInt32Array(35, 32, 36), PackedInt32Array(36, 32, 2), PackedInt32Array(2, 32, 33), PackedInt32Array(2, 33, 1), PackedInt32Array(8, 11, 37), PackedInt32Array(31, 27, 37), PackedInt32Array(37, 27, 8), PackedInt32Array(8, 27, 38), PackedInt32Array(39, 13, 14), PackedInt32Array(39, 14, 40), PackedInt32Array(40, 14, 41), PackedInt32Array(28, 40, 27), PackedInt32Array(27, 40, 41)]
+agent_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orfuw"]
+albedo_color = Color(0.40923974, 0.6217516, 0.28822815, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw2h2"]
+albedo_color = Color(0.70159554, 0.66802603, 0.47903442, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76bc1"]
+size = Vector3(40.502197, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e73ii"]
+size = Vector3(39.474365, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njnsb"]
+size = Vector3(0.2, 4.129883, 2.6975098)
+
+[node name="BearHutEncounter" type="Node3D" unique_id=237611048]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1911740860]
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
+
+[node name="Environment" type="Node3D" parent="NavigationRegion3D" unique_id=218133464]
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D/Environment" unique_id=906568934]
+transform = Transform3D(1, 0, 0, 0, -0.0004502655, 0, 0, 0, 1, 0.078186035, -1.9073486e-06, 0.008220673)
+use_collision = true
+size = Vector3(40, 1, 40)
+material = SubResource("StandardMaterial3D_orfuw")
+
+[node name="Road" type="CSGBox3D" parent="NavigationRegion3D/Environment" unique_id=1204621818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+use_collision = true
+size = Vector3(5, 0.1, 40)
+material = SubResource("StandardMaterial3D_aw2h2")
+
+[node name="HousePlaceholder" type="Node3D" parent="NavigationRegion3D/Environment" unique_id=137295827]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=2054615637]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 13.000002, 2.488045, -5.985583)
+use_collision = true
+size = Vector3(5, 4, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=1634967201]
+transform = Transform3D(-5.6824803e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.6824803e-08, 15.911095, 2.488045, -0.48054218)
+use_collision = true
+size = Vector3(8, 4, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=502881147]
+transform = Transform3D(-5.6824803e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.6824803e-08, 10.0741415, 2.488045, -3.063543)
+use_collision = true
+size = Vector3(4, 4, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=2126792149]
+transform = Transform3D(-5.6824803e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.6824803e-08, 10.091642, 2.488045, 3.424464)
+use_collision = true
+size = Vector3(2, 4, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=1331218384]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.090801, 4.5856223, 0.8218056)
+use_collision = true
+size = Vector3(2.6201172, 1, 0.67333984)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/Environment/HousePlaceholder" unique_id=1424602176]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 13.017504, 2.488045, 5.0494285)
+use_collision = true
+size = Vector3(5, 4, 0.5)
+
+[node name="Bear" parent="NavigationRegion3D" unique_id=8231705 instance=ExtResource("1_e7kbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.97281, 0.96635056, -2.2762387)
+
+[node name="HutOwner" parent="NavigationRegion3D" unique_id=1742822562 instance=ExtResource("2_26oe0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6360898, 0.8153436, 0)
+
+[node name="trigger_encounter_start" type="Area3D" parent="NavigationRegion3D" unique_id=775086069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+script = ExtResource("3_26oe0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/trigger_encounter_start" unique_id=906275556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03161621, 5.245017, 4.7307816)
+shape = SubResource("BoxShape3D_76bc1")
+debug_color = Color(0.74509805, 0, 0, 1)
+
+[node name="trigger_encounter_end" type="Area3D" parent="NavigationRegion3D" unique_id=1182393434]
+script = ExtResource("4_76bc1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/trigger_encounter_end" unique_id=904672246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7408447, 5.135598, 14.87024)
+shape = SubResource("BoxShape3D_e73ii")
+debug_color = Color(0.74509805, 0, 0, 1)
+
+[node name="trigger_house_entered" type="Area3D" parent="NavigationRegion3D" unique_id=1056712975]
+script = ExtResource("6_njnsb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/trigger_house_entered" unique_id=1079903180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.579679, 2.0288405, 0.88896894)
+shape = SubResource("BoxShape3D_njnsb")
+debug_color = Color(0.7372549, 0.22352941, 1, 1)
+
+[connection signal="body_entered" from="NavigationRegion3D/trigger_encounter_start" to="NavigationRegion3D/trigger_encounter_start" method="_on_body_entered"]
+[connection signal="body_entered" from="NavigationRegion3D/trigger_encounter_end" to="NavigationRegion3D/trigger_encounter_end" method="_on_body_entered"]
+[connection signal="body_entered" from="NavigationRegion3D/trigger_house_entered" to="NavigationRegion3D/trigger_house_entered" method="_on_body_entered"]

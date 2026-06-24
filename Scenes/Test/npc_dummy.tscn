@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dr8lnog35684a"]
+
+[ext_resource type="Script" uid="uid://hnmmm31rqt0i" path="res://Scenes/Test/Scripts/dummy_npc.gd" id="1_x4op2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
+
+[node name="Dummy" type="Node3D" unique_id=1351517932]
+
+[node name="DummyNpc" type="CharacterBody3D" parent="." unique_id=1501231112]
+script = ExtResource("1_x4op2")
+
+[node name="Mesh" type="MeshInstance3D" parent="DummyNpc" unique_id=971837470]
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="Hitbox" type="CollisionShape3D" parent="DummyNpc" unique_id=890681863]
+shape = SubResource("CapsuleShape3D_yf5fn")

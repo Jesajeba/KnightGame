@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dx2pfydw7bfu"]
+
+[ext_resource type="Script" uid="uid://dkksetcjipebg" path="res://Scripts/Particles/particle_blood_spray.gd" id="1_hym2b"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqaoo"]
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_min = 0.099999994
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcxwd"]
+albedo_color = Color(0.49147874, 0, 0.07469835, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hym2b"]
+material = SubResource("StandardMaterial3D_vcxwd")
+radius = 0.1
+height = 0.2
+
+[node name="BloodSpray" type="Node3D" unique_id=1960495201]
+script = ExtResource("1_hym2b")
+
+[node name="ParticleBloodSpray" type="GPUParticles3D" parent="." unique_id=576128180]
+transform = Transform3D(0.9998758, 0.015759649, 0, -0.015759649, 0.9998758, 0, 0, 0, 1, 0, 0.5047513, -0.0034582615)
+emitting = false
+amount = 150
+lifetime = 1.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gqaoo")
+draw_pass_1 = SubResource("SphereMesh_hym2b")

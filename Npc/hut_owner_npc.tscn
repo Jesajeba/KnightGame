@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://clwhf3gq2boyk"]
+
+[ext_resource type="Script" uid="uid://celoe2j41rnje" path="res://Scripts/Encounter/bear_hut_encounter/npc_bear_hut_owner.gd" id="1_i2sp2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1re6i"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttu44"]
+albedo_color = Color(0.34795082, 0.547301, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i2sp2"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_ttu44"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i2sp2"]
+custom_solver_bias = 0.6
+radius = 0.3
+
+[node name="HutOwner" type="Node3D" unique_id=1742822562]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=163261429 groups=["enemy"]]
+script = ExtResource("1_i2sp2")
+max_hp = 1
+
+[node name="Body" type="MeshInstance3D" parent="RigidBody3D" unique_id=812029346]
+mesh = SubResource("CapsuleMesh_1re6i")
+surface_material_override/0 = SubResource("StandardMaterial3D_ttu44")
+
+[node name="Hitbox" type="CollisionShape3D" parent="RigidBody3D" unique_id=1280405745]
+shape = SubResource("CapsuleShape3D_i2sp2")
+
+[node name="Head" type="RigidBody3D" parent="RigidBody3D" unique_id=865893121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0159847, 0)
+
+[node name="Head" type="MeshInstance3D" parent="RigidBody3D/Head" unique_id=1419785269 groups=["enemy"]]
+mesh = SubResource("SphereMesh_ttu44")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Head" unique_id=308973856]
+shape = SubResource("SphereShape3D_i2sp2")
