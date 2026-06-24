@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://78my70idbf4p" path="res://Scripts/Encounter/bear_hut_encounter/trigger_house_entered.gd" id="6_njnsb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
-vertices = PackedVector3Array(4.328186, 0.38804507, -1.5, 5.078186, 0.38804507, -0.25, 8.578186, 0.38804507, -0.25, 8.578186, 0.38804507, -6.75, 2.078186, 0.38804507, -0.75, 2.828186, 0.38804507, -1.5, 11.328186, 0.38804507, -19, -18.921814, 0.38804507, -19, -18.921814, 0.38804507, 0, 9.328186, 0.38804507, -7.5, 11.328186, 0.38804507, -7.5, 2.078186, 0.38804507, 0, 17.328186, 0.38804507, -6.75, 17.328186, 0.38804507, 4, 19.078186, 0.38804507, 4.25, 19.078186, 0.38804507, -19, 16.578186, 0.38804507, -7.5, 11.578186, 0.38804507, -4.5, 11.578186, 0.38804507, -4, 12.328186, 0.38804507, -4.25, 11.578186, 0.38804507, 1.75, 11.578186, 0.38804507, 3.5, 14.578186, 0.38804507, 3.5, 14.578186, 0.38804507, -0.25, 11.578186, 0.38804507, -0.5, 10.828186, 0.38804507, 0.75, 10.828186, 0.38804507, 1, 11.328186, 0.38804507, 19, 11.328186, 0.38804507, 6.5, 9.328186, 0.38804507, 6.5, 8.578186, 0.38804507, 5.75, 2.828186, 0.38804507, 1.5, 8.578186, 0.38804507, 1.75, 5.078186, 0.38804507, 0.75, 4.328186, 0.38804507, 1.5, 9.328186, 0.38804507, 1, 9.328186, 0.38804507, 0.75, 2.078186, 0.38804507, 0.75, -18.921814, 0.38804507, 19, 17.328186, 0.38804507, 5.75, 16.578186, 0.38804507, 6.5, 19.078186, 0.38804507, 19)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(5, 3, 0), PackedInt32Array(3, 5, 9), PackedInt32Array(9, 5, 6), PackedInt32Array(6, 10, 9), PackedInt32Array(4, 11, 8), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(10, 6, 16), PackedInt32Array(16, 6, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 21, 20), PackedInt32Array(26, 25, 20), PackedInt32Array(20, 25, 24), PackedInt32Array(20, 24, 23), PackedInt32Array(20, 23, 22), PackedInt32Array(29, 28, 27), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 27), PackedInt32Array(34, 33, 32), PackedInt32Array(36, 25, 35), PackedInt32Array(35, 25, 26), PackedInt32Array(34, 32, 31), PackedInt32Array(31, 32, 30), PackedInt32Array(35, 32, 36), PackedInt32Array(36, 32, 2), PackedInt32Array(2, 32, 33), PackedInt32Array(2, 33, 1), PackedInt32Array(8, 11, 37), PackedInt32Array(31, 27, 37), PackedInt32Array(37, 27, 8), PackedInt32Array(8, 27, 38), PackedInt32Array(39, 13, 14), PackedInt32Array(39, 14, 40), PackedInt32Array(40, 14, 41), PackedInt32Array(28, 40, 27), PackedInt32Array(27, 40, 41)]
+vertices = PackedVector3Array(9.328186, 0.38804507, 1, 10.078186, 0.38804507, 1, 10.078186, 0.38804507, 0.75, 9.328186, 0.38804507, 0.75, 8.578186, 0.38804507, 0, 8.578186, 0.38804507, -6.75, -18.921814, 0.38804507, -19, -18.921814, 0.38804507, 19, 8.578186, 0.38804507, 1.75, 8.578186, 0.38804507, 5.75, 9.328186, 0.38804507, -7.5, 11.328186, 0.38804507, -7.5, 11.328186, 0.38804507, -19, 11.328186, 0.38804507, 19, 11.328186, 0.38804507, 6.5, 9.328186, 0.38804507, 6.5, 17.328186, 0.38804507, -6.75, 17.328186, 0.38804507, 4, 19.078186, 0.38804507, 4.25, 19.078186, 0.38804507, -19, 16.578186, 0.38804507, -7.5, 10.828186, 0.38804507, 1, 10.828186, 0.38804507, 0.75, 11.578186, 0.38804507, 1.75, 11.578186, 0.38804507, 3.5, 14.578186, 0.38804507, 3.5, 11.578186, 0.38804507, 0, 14.578186, 0.38804507, -4.5, 11.578186, 0.38804507, -4.5, 17.328186, 0.38804507, 5.75, 16.578186, 0.38804507, 6.5, 19.078186, 0.38804507, 19)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(0, 8, 3), PackedInt32Array(3, 8, 4), PackedInt32Array(4, 8, 7), PackedInt32Array(8, 9, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(10, 5, 12), PackedInt32Array(12, 5, 6), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 9), PackedInt32Array(9, 13, 7), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(11, 12, 20), PackedInt32Array(20, 12, 19), PackedInt32Array(19, 16, 20), PackedInt32Array(22, 21, 2), PackedInt32Array(2, 21, 1), PackedInt32Array(25, 24, 23), PackedInt32Array(22, 26, 21), PackedInt32Array(21, 26, 23), PackedInt32Array(23, 26, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(26, 27, 25), PackedInt32Array(29, 17, 18), PackedInt32Array(29, 18, 30), PackedInt32Array(30, 18, 31), PackedInt32Array(14, 30, 13), PackedInt32Array(13, 30, 31)]
 agent_radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orfuw"]
@@ -27,6 +27,12 @@ size = Vector3(39.474365, 10, 1)
 size = Vector3(0.2, 4.129883, 2.6975098)
 
 [node name="BearHutEncounter" type="Node3D" unique_id=237611048]
+
+[node name="Bear" parent="." unique_id=8231705 instance=ExtResource("1_e7kbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.97281, 1.5370655, -2.2762387)
+
+[node name="HutOwner" parent="." unique_id=1742822562 instance=ExtResource("2_26oe0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.121056, 0.8153436, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1911740860]
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
@@ -77,12 +83,6 @@ transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 13.017504, 2.488045, 5.
 use_collision = true
 size = Vector3(5, 4, 0.5)
 
-[node name="Bear" parent="NavigationRegion3D" unique_id=8231705 instance=ExtResource("1_e7kbf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.97281, 0.96635056, -2.2762387)
-
-[node name="HutOwner" parent="NavigationRegion3D" unique_id=1742822562 instance=ExtResource("2_26oe0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.121056, 0.8153436, 0)
-
 [node name="trigger_encounter_start" type="Area3D" parent="NavigationRegion3D" unique_id=775086069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("3_26oe0")
@@ -111,3 +111,5 @@ debug_color = Color(0.7372549, 0.22352941, 1, 1)
 [connection signal="body_entered" from="NavigationRegion3D/trigger_encounter_start" to="NavigationRegion3D/trigger_encounter_start" method="_on_body_entered"]
 [connection signal="body_entered" from="NavigationRegion3D/trigger_encounter_end" to="NavigationRegion3D/trigger_encounter_end" method="_on_body_entered"]
 [connection signal="body_entered" from="NavigationRegion3D/trigger_house_entered" to="NavigationRegion3D/trigger_house_entered" method="_on_body_entered"]
+
+[editable path="HutOwner"]

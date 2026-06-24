@@ -1,51 +1,61 @@
-extends RigidBody3D
+extends CharacterBody3D
 
-@export var encounter_id: String = "bear_hut"
+enum State {PASSIVE, ALERT, IDLE, PATHFIND, ATTACK, DEAD}
 
 # Variables
-@export var max_hp : int = 3
-var hp := max_hp
+@export var encounter_id: String = "bear_hut"
+@export var max_hp: float = 3.0
 
-@onready var head: RigidBody3D = $Head
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
-const BLOOD_EFFECT = preload("res://Scenes/blood_spray.tscn")
+var current_state: State = State.PASSIVE
+var hp: float
+var target: Node3D = null
 
-# Set ensure hp is full, freeze physics
+
 func _ready():
-	hp = max_hp
-	freeze = true
-	head.freeze = true  # stays "attached" visually until death
+	hp = max_hp # Set hp to max hp on load
+	current_state = State.PASSIVE
+	print("Bear ready, loaded state: ", State.keys()[current_state])
+	
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity = get_gravity() * delta * 2.0
+	else:
+		velocity = Vector3.ZERO
+		
+	move_and_slide()
+	
+	
+func change_state(new_state: State) -> void:
+	if current_state == new_state:
+		return
+	print("Bear state: ", State.keys()[current_state], " -> ", State.keys()[new_state])
+	current_state = new_state
+	
+func _on_detection_range_body_entered(body: Node3D) -> void:
+	target = body
+	print("Body detected: ", body)
+	if current_state == State.PASSIVE:
+		current_state = State.ALERT
+	
+func _on_detection_range_body_exited(body: Node3D) -> void:
+	target = null
+	print("Body left detection range")
+	if current_state == State.ALERT:
+		current_state = State.PASSIVE
 
-func take_damage(amount: int, source_position: Vector3 = global_position):
+# Taking damage
+func take_damage(amount: int):
 	if hp <= 0:
 		return
 	hp -= amount
+	print("Bear HP: ", hp)
 	if hp <= 0:
-		die(source_position)
-	print("Took Damage")
+		die()
 
-func die(attack_origin: Vector3 = global_position):
+# Dying
+func die():
+	current_state = State.DEAD
 	GameManager.set_flag(encounter_id, "bear_killed", true)
-	freeze = false  # body falls
-	var direction = (global_position - attack_origin).normalized()
-	apply_central_impulse(direction * 4.0 + Vector3.UP * 2.0)
-	pop_head(direction)
-	
-	var blood = BLOOD_EFFECT.instantiate()
-	add_child(blood)
-	blood.position = Vector3.ZERO
-	blood.play()
-
-func pop_head(direction: Vector3):
-	head.reparent(get_tree().current_scene, true)  # keeps world position/rotation
-	head.freeze = false
-	head.apply_central_impulse(direction * 2.0)
-	head.apply_torque_impulse(Vector3(randf(), randf(), randf()) * 1.0)
-	
-	var head_blood = BLOOD_EFFECT.instantiate()
-	head.add_child(head_blood)
-	head_blood.position = Vector3.ZERO
-	head_blood.play()
-
-func _process(delta: float) -> void:
-	pass
+	print("bear died")
