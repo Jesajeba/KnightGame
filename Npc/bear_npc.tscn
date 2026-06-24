@@ -20,8 +20,11 @@ height = 0.42236328
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(1.9487305, 1.9970703, 1.4956055)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
-radius = 6.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 4.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+radius = 20.0
 
 [node name="Bear" type="Node3D" unique_id=8231705]
 
@@ -31,11 +34,11 @@ script = ExtResource("1_43e66")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="BearNPC" unique_id=747411659]
 
 [node name="Hitbox" type="CollisionShape3D" parent="BearNPC" unique_id=78212299]
-transform = Transform3D(0.008398065, -1.4999765, 0, 1.4999765, 0.008398065, 0, 0, 0, 1.5, -0.0403148, -0.18512166, 0)
+transform = Transform3D(-3.6709114e-10, 6.5566056e-08, -1.5, 1.4999766, 0.008398066, 0, 0.008398066, -1.4999766, -6.556708e-08, -0.0403148, -0.18512166, 0)
 shape = SubResource("CapsuleShape3D_d0u6y")
 
 [node name="Mesh" type="Node3D" parent="BearNPC" unique_id=119168399]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 0, 0, 0)
 
 [node name="Head" type="MeshInstance3D" parent="BearNPC/Mesh" unique_id=2049456555]
 transform = Transform3D(-0.08705993, -0.99620306, 0, 0.99620306, -0.08705993, 0, 0, 0, 1, -0.6851791, 0.3110414, 0)
@@ -62,17 +65,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36871004, -0.78881836, 0.36
 mesh = SubResource("CapsuleMesh_57qmd")
 
 [node name="AttackHitbox" type="Area3D" parent="BearNPC" unique_id=194122196]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 monitoring = false
 
 [node name="Hitbox" type="CollisionShape3D" parent="BearNPC/AttackHitbox" unique_id=358442246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1259394, -0.27151322, 0.04557973)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1259394, -0.27151322, 0.04557973)
 shape = SubResource("BoxShape3D_g4v7s")
 
-[node name="DetectionRange" type="Area3D" parent="BearNPC" unique_id=1360789532]
+[node name="DetectionArea" type="Area3D" parent="BearNPC" unique_id=334178324]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BearNPC/DetectionRange" unique_id=1996497968]
-shape = SubResource("SphereShape3D_yf5fn")
-debug_color = Color(0.65882355, 0.5176471, 0, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BearNPC/DetectionArea" unique_id=1712416534]
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0.6627451, 0.5137255, 0, 1)
 
-[connection signal="body_entered" from="BearNPC/DetectionRange" to="BearNPC" method="_on_detection_range_body_entered"]
-[connection signal="body_exited" from="BearNPC/DetectionRange" to="BearNPC" method="_on_detection_range_body_exited"]
+[node name="ChaseArea" type="Area3D" parent="BearNPC" unique_id=2097900377]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BearNPC/ChaseArea" unique_id=1153354266]
+shape = SubResource("SphereShape3D_57qmd")
+debug_color = Color(0.9647059, 0, 0.5019608, 1)
+
+[connection signal="body_entered" from="BearNPC/DetectionArea" to="BearNPC" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="BearNPC/DetectionArea" to="BearNPC" method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="BearNPC/ChaseArea" to="BearNPC" method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="BearNPC/ChaseArea" to="BearNPC" method="_on_chase_area_body_exited"]
