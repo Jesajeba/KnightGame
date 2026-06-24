@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://celoe2j41rnje" path="res://Scripts/Encounter/bear_hut_encounter/npc_bear_hut_owner.gd" id="1_i2sp2"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
+radius = 0.40576172
+height = 2.081543
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 radius = 0.4
 height = 1.6
@@ -10,14 +14,14 @@ height = 1.6
 radius = 0.3
 height = 0.6
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
-radius = 0.40576172
-height = 2.081543
-
 [node name="HutOwner" type="Node3D" unique_id=1742822562]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1288963365 groups=["enemy"]]
 script = ExtResource("1_i2sp2")
+
+[node name="Hitbox" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1093353227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2378549, 0)
+shape = SubResource("CapsuleShape3D_57qmd")
 
 [node name="Node3D" type="Node3D" parent="CharacterBody3D" unique_id=171890632]
 
@@ -27,7 +31,3 @@ mesh = SubResource("CapsuleMesh_g4v7s")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Node3D" unique_id=857777203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9739007, 0)
 mesh = SubResource("SphereMesh_yf5fn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1093353227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2378549, 0)
-shape = SubResource("CapsuleShape3D_57qmd")

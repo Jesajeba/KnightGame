@@ -142,7 +142,6 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		
 # Take damage
 func take_damage(amount: int, source_position: Vector3 = global_position):
-	print("Took damage, current hp: ", hp)
 	if hp <= 0:
 		return
 	aggressive = true
