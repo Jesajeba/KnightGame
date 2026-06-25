@@ -5,22 +5,25 @@ enum State { PASSIVE, STANDBY, PATHFIND, ATTACK, DEAD }
 var current_state: State = State.PASSIVE
 
 # Variables
-@export var detection_range := 20.0
-@export var attack_range := 2.2
-@export var move_speed := 5.0
-@export var max_hp := 5.0
+@export var detection_range: float = 20.0
+@export var attack_range: float = 2.4
+@export var move_speed: float = 5.0
+@export var max_hp: float = 5.0
+@export var damage: float = 1.0
 
 var hp = max_hp
-var aggressive = false
-var can_attack = true
-var has_hit_this_swing = false
+var aggressive: bool = false
+var can_attack: bool = true
+var has_hit_this_swing: bool = false
 var target: Node3D = null
+var last_state: State = current_state
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var attack_hitbox: Area3D = $AttackHitbox
 @onready var hitbox: CollisionShape3D = $Hitbox
 
 
+# Start of logic
 func _ready() -> void:
 	# Ensure hp is max on load
 	hp = max_hp
@@ -29,22 +32,24 @@ func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2.0
-	
-	# Default to the player being the target
-	if target == null:
-		target = get_tree().get_first_node_in_group("player")
 		
 	if target != null:
 		var distance = global_position.distance_to(target.global_position)
 		update_state(distance)
-		run_state(delta, distance)
+		print_state_if_changed()
+		run_state()
 	else:
 		velocity.x = 0
 		velocity.z = 0
 		
 	move_and_slide()
 	
-
+	
+func print_state_if_changed() -> void:
+	if current_state != last_state:
+		print(name, " state: ", State.keys()[last_state], " -> ", State.keys()[current_state])
+		last_state = current_state
+	
 # Updates state machine states
 func update_state(distance: float):
 	if current_state == State.DEAD:
@@ -57,7 +62,8 @@ func update_state(distance: float):
 	# If target is dead, return to idle state - Does not reset aggressive flag so if player walks into range follow aggressive logic
 	if target !=  null and target.has_method("get_hp") and target.get_hp() <= 0:
 		target = null
-		current_state = State.STANDBY
+		aggressive = false
+		current_state = State.PASSIVE
 		return
 	
 	match current_state:
@@ -76,7 +82,8 @@ func update_state(distance: float):
 				current_state = State.PATHFIND
 
 # The actual logic for each state in the state machine
-func run_state(delta: float, distance: float):
+# Pass delta as argument once lerping rotation for look at stuff
+func run_state():
 	match current_state:
 		State.PASSIVE:
 			velocity.x = 0
@@ -139,15 +146,17 @@ func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 		return
 	if body == target and body.has_method("take_damage"):
 		has_hit_this_swing = true
-		body.take_damage(1)
+		body.take_damage(damage)
 		
 # Take damage
-func take_damage(amount: int):
+func take_damage(amount: float, attacker: Node3D = null):
 	if hp <= 0:
 		return
 	aggressive = true
 	hp -= amount
 	print("Eenemy HP: ", hp)
+	if attacker != null and target == null:
+		target = attacker
 	if hp <= 0:
 		die()
 

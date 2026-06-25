@@ -5,6 +5,7 @@ const SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 @export var max_hp = 10.0
 var hp = max_hp
+@export var damage: float = 1.0
 
 # Sensitivity 
 const SENSITIVITY = 0.001
@@ -62,7 +63,7 @@ func attack():
 func _on_hitbox_body_entered(body: Node):
 	print("Sword hit: ", body.name, " | has take_damage: ", body.has_method("take_damage"))
 	if body.is_in_group("enemy") and body.has_method("take_damage"):
-		body.take_damage(1)
+		body.take_damage(damage, self)
 		
 # Animation placeholder
 func play_swing():
