@@ -5,6 +5,7 @@ enum State { PASSIVE, STANDBY, PATHFIND, ATTACK, DEAD }
 var current_state: State = State.PASSIVE
 
 # Variables
+@export var encounter_id: String = "bear_hut"
 @export var detection_range: float = 20.0
 @export var attack_range: float = 2.4
 @export var move_speed: float = 5.0
@@ -59,7 +60,7 @@ func update_state(distance: float):
 		current_state = State.PASSIVE
 		return
 	
-	# If target is dead, return to idle state - Does not reset aggressive flag so if player walks into range follow aggressive logic
+	# If target is dead, remove target, set aggressive to false and return to PASSIVE state
 	if target !=  null and target.has_method("get_hp") and target.get_hp() <= 0:
 		target = null
 		aggressive = false
@@ -154,7 +155,7 @@ func take_damage(amount: float, attacker: Node3D = null):
 		return
 	aggressive = true
 	hp -= amount
-	print("Eenemy HP: ", hp)
+	print("Enemy HP: ", hp)
 	if attacker != null and target == null:
 		target = attacker
 	if hp <= 0:
@@ -162,6 +163,7 @@ func take_damage(amount: float, attacker: Node3D = null):
 
 # Die funtion
 func die():
+	GameManager.set_flag(encounter_id, "bear_killed", true)
 	current_state = State.DEAD
 	hitbox.disabled = true
 

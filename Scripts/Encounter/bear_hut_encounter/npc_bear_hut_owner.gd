@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
-func take_damage(amount: int):
+func take_damage(amount: int, attacker: Node3D = null):
 	if hp <= 0:
 		return
 	hp -= amount
