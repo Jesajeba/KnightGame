@@ -12,16 +12,16 @@ var current_state: State = State.PASSIVE
 @export var max_hp: float = 5.0
 @export var damage: float = 1.0
 
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var attack_hitbox: Area3D = $AttackHitbox
+@onready var hitbox: CollisionShape3D = $Hitbox
+
 var hp = max_hp
 var aggressive: bool = false
 var can_attack: bool = true
 var has_hit_this_swing: bool = false
 var target: Node3D = null
 var last_state: State = current_state
-
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var attack_hitbox: Area3D = $AttackHitbox
-@onready var hitbox: CollisionShape3D = $Hitbox
 
 
 # Start of logic
@@ -141,13 +141,13 @@ func attack():
 	await  get_tree().create_timer(2.0).timeout
 	can_attack = true
 	
-# Apply damage
+# Deal damage
 func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 	if has_hit_this_swing:
 		return
 	if body == target and body.has_method("take_damage"):
 		has_hit_this_swing = true
-		body.take_damage(damage)
+		body.take_damage(damage, self)
 		
 # Take damage
 func take_damage(amount: float, attacker: Node3D = null):
@@ -170,3 +170,7 @@ func die():
 # Funtion to set a new target
 func set_target(new_target: Node3D):
 	target = new_target
+	
+# Function to pass hp to other npc
+func get_hp() -> float:
+	return hp

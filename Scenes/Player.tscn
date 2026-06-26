@@ -92,13 +92,13 @@ transform = Transform3D(1.0000006, 0, 0, 0, 1.0000007, 0, 0, 0, 1.0000005, 0, 0,
 mesh = SubResource("CylinderMesh_5ixxa")
 surface_material_override/0 = SubResource("StandardMaterial3D_nn08x")
 
-[node name="Hitbox" type="Area3D" parent="Player/UpperBodyPivot/Hands/Sword" unique_id=1433839456]
+[node name="AttackHitbox" type="Area3D" parent="Player/UpperBodyPivot/Hands/Sword" unique_id=1433839456]
 transform = Transform3D(1.0000001, -1.2247301e-09, 0, -3.9758485e-09, 1.0000001, 1.6817074e-08, 1.4901161e-08, 1.358397e-08, 1.0000001, 0, 0, 0)
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/UpperBodyPivot/Hands/Sword/Hitbox" unique_id=824693036]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/UpperBodyPivot/Hands/Sword/AttackHitbox" unique_id=824693036]
 transform = Transform3D(1.0000005, -0.00094248244, -1.4901161e-08, 0.00094247225, 1.0000002, -1.3943205e-08, 2.9802322e-08, -8.89122e-09, 1.0000005, 0.0001488924, 1.1061927, 0)
 shape = SubResource("CapsuleShape3D_rpqav")
 debug_color = Color(0.93327594, 0, 0.51579684, 0.41960785)
 
-[connection signal="body_entered" from="Player/UpperBodyPivot/Hands/Sword/Hitbox" to="Player" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Player/UpperBodyPivot/Hands/Sword/AttackHitbox" to="Player" method="_on_attack_hitbox_body_entered"]

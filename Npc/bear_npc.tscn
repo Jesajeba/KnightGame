@@ -58,7 +58,7 @@ mesh = SubResource("CapsuleMesh_57qmd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36871004, -0.78881836, 0.364213)
 mesh = SubResource("CapsuleMesh_57qmd")
 
-[node name="AttackHitbox" type="Area3D" parent="BearNPC" unique_id=194122196 groups=["enemy"]]
+[node name="AttackHitbox" type="Area3D" parent="BearNPC" unique_id=194122196]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.50182, 0)
 monitoring = false
 

@@ -30,7 +30,7 @@ func _evaluate_outcome() -> void:
 		print("[%s] NPC DEAD - dishonor: %d" % [encounter_id, GameManager.get_stat("dishonor_points")])
 		return
 
-	if entered and bear_killed:
+	if bear_killed:
 		GameManager.add_stat("honor_points", 10)
 		print("[%s] BEAR SLAIN - honor: %d" % [encounter_id, GameManager.get_stat("honor_points")])
 

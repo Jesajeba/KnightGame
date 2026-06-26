@@ -14,20 +14,38 @@ height = 1.6
 radius = 0.3
 height = 0.6
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
 [node name="HutOwner" type="Node3D" unique_id=1742822562]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1288963365 groups=["enemy"]]
+[node name="HutOwner" type="CharacterBody3D" parent="." unique_id=1288963365 groups=["enemy"]]
 script = ExtResource("1_i2sp2")
+max_hp = 5.0
+is_brave = true
+can_flee_at_low_hp = true
+flee_hp_threshold = 2.0
 
-[node name="Hitbox" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1093353227]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="HutOwner" unique_id=1407626031]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HutOwner" unique_id=1093353227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2378549, 0)
 shape = SubResource("CapsuleShape3D_57qmd")
 
-[node name="Node3D" type="Node3D" parent="CharacterBody3D" unique_id=171890632]
+[node name="Mesh" type="Node3D" parent="HutOwner" unique_id=171890632]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Node3D" unique_id=693163151]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HutOwner/Mesh" unique_id=693163151]
 mesh = SubResource("CapsuleMesh_g4v7s")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Node3D" unique_id=857777203]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="HutOwner/Mesh" unique_id=857777203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9739007, 0)
 mesh = SubResource("SphereMesh_yf5fn")
+
+[node name="AttackHitbox" type="Area3D" parent="HutOwner" unique_id=42411331]
+monitoring = false
+
+[node name="Hitbox" type="CollisionShape3D" parent="HutOwner/AttackHitbox" unique_id=213142239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3712082, -0.8928776)
+shape = SubResource("BoxShape3D_yf5fn")
+debug_color = Color(0.74509805, 0, 0, 1)
+
+[connection signal="body_entered" from="HutOwner/AttackHitbox" to="HutOwner" method="_on_attack_hitbox_body_entered"]

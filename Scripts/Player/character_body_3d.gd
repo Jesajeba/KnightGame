@@ -1,45 +1,43 @@
 extends CharacterBody3D
 
-# Player variables
-const SPEED = 8.0
-const JUMP_VELOCITY = 4.5
-@export var max_hp = 10.0
-var hp = max_hp
+# Variables
+@export var max_hp: float = 10.0
 @export var damage: float = 1.0
+@export var sensitivity: float = 0.001
+@export var speed: float = 8.0
 
-# Sensitivity 
-const SENSITIVITY = 0.001
-
-# Head bob variables
-const BOB_FREQUENCY = 3.0
-const BOB_AMPLITUDE = 0.05
-var bob_time = 0.0
-
-# Attack variables
-var can_attack : bool = true
-
-# Onready variables
 @onready var upper_body_pivot = $UpperBodyPivot
 @onready var camera = $UpperBodyPivot/Camera3D
-@onready var hitbox = $UpperBodyPivot/Hands/Sword/Hitbox
+@onready var attack_hitbox = $UpperBodyPivot/Hands/Sword/AttackHitbox
 @onready var hands = $UpperBodyPivot/Hands
 
+var hp = max_hp
+var can_attack : bool = true
+var bob_time: float = 0.0
+
+const JUMP_VELOCITY: float = 4.5
+const BOB_FREQUENCY: float = 3.0
+const BOB_AMPLITUDE: float = 0.05
+
+
+# Start of logic
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Input for quitting the game
+	# Input for quitting the game - PLACEHOLDER
 	if Input.is_action_pressed("Exit"):
 		get_tree().quit()
 	
 	if event is InputEventMouseMotion:
-		# 1. Rotate the WHOLE player horizontally on the Y axis
-		rotate_y(-event.relative.x * SENSITIVITY)
+		# 1. Rotate the player horizontally on the Y axis
+		rotate_y(-event.relative.x * sensitivity)
 		
-		# 2. Rotate ONLY the camera pivot vertically on the X axis
-		upper_body_pivot.rotate_x(-event.relative.y * SENSITIVITY)
+		# 2. Rotate UpperBodyPivot vertically on the X axis
+		upper_body_pivot.rotate_x(-event.relative.y * sensitivity)
 		upper_body_pivot.rotation.x = clamp(upper_body_pivot.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-		
+	
+	# Attack action
 	if event.is_action_pressed("Attack") and can_attack:
 		attack()
 		print("attack")
@@ -49,19 +47,18 @@ func _unhandled_input(event: InputEvent) -> void:
 func attack():
 	play_swing()
 	can_attack = false
-	hitbox.monitoring = true
+	attack_hitbox.monitoring = true
 	
-	# How long the hitbox is live on attack
+	# How long the attack_hitbox is live on attack
 	await get_tree().create_timer(0.2).timeout
-	hitbox.monitoring = false
+	attack_hitbox.monitoring = false
 	
 	# Attack cooldown
 	await get_tree().create_timer(0.4).timeout
 	can_attack = true
 
 # Dealing damage
-func _on_hitbox_body_entered(body: Node):
-	print("Sword hit: ", body.name, " | has take_damage: ", body.has_method("take_damage"))
+func _on_attack_hitbox_body_entered(body: Node):
 	if body.is_in_group("enemy") and body.has_method("take_damage"):
 		body.take_damage(damage, self)
 		
@@ -86,14 +83,14 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		if direction:
-			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 5.0)
-			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 5.0)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 5.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 5.0)
 		else:
 			velocity.x = lerp(velocity.x, 0.0, delta * 7.0)
 			velocity.z = lerp(velocity.z, 0.0, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 2.0)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 2.0)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
 		
 	# Head bobbing (Only bob if we are actually moving on the ground)
 	if is_on_floor() and direction != Vector3.ZERO:
@@ -111,7 +108,7 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQUENCY / 2) * BOB_AMPLITUDE
 	return pos
 	
-func take_damage(amount: int):
+func take_damage(amount: float, attacker: Node3D = null):
 	hp -= amount
 	print("Player HP: ", hp)
 	if hp <= 0:
