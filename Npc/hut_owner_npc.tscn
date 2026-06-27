@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clwhf3gq2boyk"]
 
-[ext_resource type="Script" uid="uid://celoe2j41rnje" path="res://Scripts/Encounter/bear_hut_encounter/npc_bear_hut_owner.gd" id="1_i2sp2"]
+[ext_resource type="Script" uid="uid://b5dnkc82e0iby" path="res://Npc/hut_owner.gd" id="1_ttu44"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
 radius = 0.40576172
@@ -19,9 +19,7 @@ height = 0.6
 [node name="HutOwner" type="Node3D" unique_id=1742822562]
 
 [node name="HutOwner" type="CharacterBody3D" parent="." unique_id=1288963365 groups=["enemy"]]
-script = ExtResource("1_i2sp2")
-max_hp = 5.0
-is_brave = true
+script = ExtResource("1_ttu44")
 can_flee_at_low_hp = true
 flee_hp_threshold = 2.0
 

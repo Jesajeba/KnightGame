@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bp17drsxi18fa" path="res://Npc/bear_npc.tscn" id="1_e7kbf"]
 [ext_resource type="PackedScene" uid="uid://clwhf3gq2boyk" path="res://Npc/hut_owner_npc.tscn" id="2_26oe0"]
 [ext_resource type="Script" uid="uid://b8lduguo80t22" path="res://Scripts/Encounter/bear_hut_encounter/trigger_encounter_start.gd" id="3_26oe0"]
-[ext_resource type="Script" uid="uid://yjid5me0gimd" path="res://Scenes/Chunk/Encounter/trigger_npc_behaviour.gd" id="3_il7ey"]
+[ext_resource type="Script" uid="uid://yjid5me0gimd" path="res://Scripts/Encounter/bear_hut_encounter/trigger_npc_behaviour.gd" id="3_il7ey"]
 [ext_resource type="Script" uid="uid://dpnfgsbglgmda" path="res://Scripts/Encounter/bear_hut_encounter/trigger_encounter_end.gd" id="4_76bc1"]
 [ext_resource type="Script" uid="uid://78my70idbf4p" path="res://Scripts/Encounter/bear_hut_encounter/trigger_house_entered.gd" id="6_njnsb"]
 

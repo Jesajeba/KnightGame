@@ -1,20 +1,22 @@
 extends CharacterBody3D
+class_name BaseMeleeAI
 
 # State machine
 enum State {PASSIVE, STANDBY, PATHFIND, ATTACK, FLEE, DEAD}
 var current_state: State = State.PASSIVE
 
 # Variables
-@export var encounter_id: String = "bear_hut"
+
 @export var detection_range: float = 20.0
 @export var attack_range: float = 2.0
 @export var move_speed: float = 5.0
 @export var max_hp: float = 3.0
 @export var damage: float = 1.0
+
+@export var is_brave: bool = false
 @export var flee_safe_distance: float = 15.0
 @export var flee_repick_interval: float = 1.5 # how often to choose a new flee point 
 @export var flee_distance: float = 6.0 # how far flee point should be
-@export var is_brave: bool = false
 @export var can_flee_at_low_hp: bool = false
 @export var flee_hp_threshold: float = 0.0
 
@@ -72,7 +74,8 @@ func update_state(distance: float):
 			current_state = State.PASSIVE
 			target = null
 		return
-		
+	
+	# Always default to PASSIVE if not aggressive
 	if not aggressive:
 		current_state = State.PASSIVE
 		return
@@ -194,7 +197,7 @@ func take_damage(amount: float, attacker: Node3D = null):
 	if current_state == State.DEAD or hp <= 0:
 		return
 	hp -= amount
-	print("NPC HP: ", hp)
+	print(name, " HP: ", hp)
 	
 	if hp <= 0:
 		die()
@@ -213,7 +216,7 @@ func take_damage(amount: float, attacker: Node3D = null):
 
 # Die funtion
 func die():
-	GameManager.set_flag(encounter_id, "npc_owner_killed", true)
+	
 	current_state = State.DEAD
 	velocity.x = 0
 	velocity.z = 0

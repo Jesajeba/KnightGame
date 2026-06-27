@@ -24,6 +24,8 @@ size = Vector3(1.9487305, 1.4912109, 1.4956055)
 
 [node name="BearNPC" type="CharacterBody3D" parent="." unique_id=1028307245 groups=["enemy"]]
 script = ExtResource("1_43e66")
+max_hp = 5.0
+is_brave = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="BearNPC" unique_id=747411659]
 
