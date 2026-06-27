@@ -33,7 +33,7 @@ size = Vector3(0.5520264, 4.129883, 3.265808)
 [node name="BearHutEncounter" type="Node3D" unique_id=237611048]
 
 [node name="Bear" parent="." unique_id=8231705 instance=ExtResource("1_e7kbf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.630735, 0.00022220612, -2.9373808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.630735, 0.6897974, -2.9373808)
 
 [node name="BearNPC" parent="Bear" index="0" unique_id=1028307245]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3238916, 0)

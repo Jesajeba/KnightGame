@@ -15,21 +15,24 @@ radius = 0.3
 height = 0.6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(1, 1, 1.3796387)
 
 [node name="HutOwner" type="Node3D" unique_id=1742822562]
 
 [node name="HutOwner" type="CharacterBody3D" parent="." unique_id=1288963365 groups=["enemy"]]
 script = ExtResource("1_ttu44")
-can_flee_at_low_hp = true
-flee_hp_threshold = 2.0
+attack_range = 2.2
+max_hp = 4.0
+flee_hp_threshold = 3.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="HutOwner" unique_id=1407626031]
 
 [node name="Hitbox" type="CollisionShape3D" parent="HutOwner" unique_id=1093353227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2378549, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008544922, 1.0395732, 0.005859375)
 shape = SubResource("CapsuleShape3D_57qmd")
 
 [node name="Mesh" type="Node3D" parent="HutOwner" unique_id=171890632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008544922, 0.8017183, 0.005859375)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HutOwner/Mesh" unique_id=693163151]
 mesh = SubResource("CapsuleMesh_g4v7s")
@@ -39,10 +42,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9739007, 0)
 mesh = SubResource("SphereMesh_yf5fn")
 
 [node name="AttackHitbox" type="Area3D" parent="HutOwner" unique_id=42411331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008544922, 0.8017183, 0.005859375)
 monitoring = false
 
 [node name="Hitbox" type="CollisionShape3D" parent="HutOwner/AttackHitbox" unique_id=213142239]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3712082, -0.8928776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37120813, -1.0826969)
 shape = SubResource("BoxShape3D_yf5fn")
 debug_color = Color(0.74509805, 0, 0, 1)
 

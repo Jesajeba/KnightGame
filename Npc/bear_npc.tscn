@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dga2bpxe4sgse" path="res://Scripts/Encounter/bear_hut_encounter/npc_bear.gd" id="1_43e66"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d0u6y"]
-radius = 0.8261719
-height = 1.8603516
+radius = 0.86083984
+height = 2.0703125
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yf5fn"]
 radius = 0.3149414
@@ -18,23 +18,26 @@ radius = 0.13183594
 height = 0.42236328
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(1.9487305, 1.4912109, 1.4956055)
+size = Vector3(1.9487305, 1.4912109, 1.8071594)
 
 [node name="Bear" type="Node3D" unique_id=8231705]
 
 [node name="BearNPC" type="CharacterBody3D" parent="." unique_id=1028307245 groups=["enemy"]]
 script = ExtResource("1_43e66")
+attack_range = 2.5
 max_hp = 5.0
 is_brave = true
+can_flee_at_low_hp = true
+flee_hp_threshold = 1.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="BearNPC" unique_id=747411659]
 
 [node name="Hitbox" type="CollisionShape3D" parent="BearNPC" unique_id=78212299]
-transform = Transform3D(-3.6709114e-10, 6.5566056e-08, -1.5, 1.4999766, 0.008398066, 0, 0.008398066, -1.4999766, -6.556708e-08, -0.0403148, 1.3166983, 0)
+transform = Transform3D(-3.6709114e-10, 6.5566056e-08, -1.5, 1.4999766, 0.008398066, 0, 0.008398066, -1.4999766, -6.556708e-08, -0.03999999, 1.3491509, -0.1574673)
 shape = SubResource("CapsuleShape3D_d0u6y")
 
 [node name="Mesh" type="Node3D" parent="BearNPC" unique_id=119168399]
-transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 0, 1.50182, 0)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 0, 1.4980767, 0)
 
 [node name="Head" type="MeshInstance3D" parent="BearNPC/Mesh" unique_id=2049456555]
 transform = Transform3D(-0.08705993, -0.99620306, 0, 0.99620306, -0.08705993, 0, 0, 0, 1, -0.6851791, 0.3110414, 0)
@@ -61,11 +64,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36871004, -0.78881836, 0.36
 mesh = SubResource("CapsuleMesh_57qmd")
 
 [node name="AttackHitbox" type="Area3D" parent="BearNPC" unique_id=194122196]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.50182, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.4980767, 0)
 monitoring = false
 
 [node name="Hitbox" type="CollisionShape3D" parent="BearNPC/AttackHitbox" unique_id=358442246]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.126, 0, 0.046)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.281777, 0, 0.045999996)
 shape = SubResource("BoxShape3D_g4v7s")
 debug_color = Color(0.99215686, 0, 0.26666668, 1)
 
